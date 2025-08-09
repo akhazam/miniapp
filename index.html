@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>My World Mini App</title>
+  <script src="https://cdn.worldcoin.org/idkit.js"></script>
+</head>
+<body>
+  <h1>Hello, World ID!</h1>
+
+  <!-- Verify ボタン -->
+  <div id="idkit-container"></div>
+  <script>
+    IDKit.init({
+      app_id: "app_9d5fabd152ed640cc9031399c409a6dd",
+      action: "login",
+      signal: "demo"
+    });
+  </script>
+</body>
+</html>
