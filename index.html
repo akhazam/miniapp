@@ -2,20 +2,39 @@
 <html>
 <head>
   <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>My World Mini App</title>
+  
   <script src="https://cdn.worldcoin.org/idkit.js"></script>
+  <style>body{font-family:system-ui;margin:24px}button{font-size:16px;padding:12px 16px}</style>
 </head>
 <body>
   <h1>Hello, World ID!</h1>
 
-  <!-- Verify ボタン -->
-  <div id="idkit-container"></div>
+  
+  <button id="verifyBtn">Verify with World ID</button>
+
+  <pre id="out" style="white-space:pre-wrap;margin-top:16px"></pre>
+
   <script>
-    IDKit.init({
-      app_id: "app_9d5fabd152ed640cc9031399c409a6dd",
-      action: "login",
-      signal: "demo"
+    const APP_ID = "app_9d5fabd152ed640cc9031399c409a6dd";
+    const ACTION = "login";
+
+    const kit = IDKit.init({
+      app_id: APP_ID,
+      action: ACTION,
+      signal: "demo",
+      on_success: (result) => {
+        document.getElementById("out").textContent =
+          "✅ Verified!\n\n" + JSON.stringify(result, null, 2);
+      },
+      on_error: (err) => {
+        document.getElementById("out").textContent =
+          "❌ Error: " + (err?.message || String(err));
+      }
     });
+
+    document.getElementById("verifyBtn").addEventListener("click", () => kit.open());
   </script>
 </body>
 </html>
